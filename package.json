@@ -1,0 +1,23 @@
+{
+  "name": "shop-aws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a1exymoroz/shop-aws.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a1exymoroz/shop-aws/issues"
+  },
+  "homepage": "https://github.com/a1exymoroz/shop-aws#readme",
+  "dependencies": {
+    "serverless": "^3.19.0",
+    "serverless-finch": "^4.0.0"
+  }
+}
