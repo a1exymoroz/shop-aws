@@ -25,8 +25,8 @@ provider:
   runtime: nodejs12.x
 
 # you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  stage: dev
+  region: eu-west-1
 
 # you can add statements to the Lambda function's IAM Role here
 #  iam:
@@ -58,16 +58,32 @@ provider:
 #    - include-me.js
 #    - include-me-dir/**
 
+
+
 functions:
-  hello:
-    handler: handler.hello
+  getProductsById:
+    handler: handler.getProductById
+    #    The following are a few example events you can configure
+    #    NOTE: Please make sure to change your handler code to work with those events
+    #    Check the event documentation for details
+    events:
+      - httpApi:
+          path: products/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+  products:
+    handler: handler.products
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
-#    events:
-#      - httpApi:
-#          path: /users/create
-#          method: get
+    events:
+      - httpApi:
+          path: products
+          method: get
+          cors: true
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
