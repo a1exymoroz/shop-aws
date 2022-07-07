@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: shop-aws
+service: shop-aws-rds
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -48,7 +48,11 @@ provider:
 
 # you can define service wide environment variables here
 #  environment:
-#    variable1: value1
+#    PG_HOST: <host>
+#    PG_PORT: 5432
+#    PG_DATABASE: shop
+#    PG_USERNAME: postgres
+#    PG_PASSWORD: <password>
 
 # you can add packaging information here
 #package:
@@ -61,29 +65,18 @@ provider:
 
 
 functions:
-  getProductsById:
-    handler: handler.getProductById
-    #    The following are a few example events you can configure
-    #    NOTE: Please make sure to change your handler code to work with those events
-    #    Check the event documentation for details
-    events:
-      - httpApi:
-          path: products/{id}
-          method: get
-          request:
-            parameters:
-              paths:
-                id: true
   products:
-    handler: handler.products
+    handler: products.invoke
+  create-product:
+      handler: create-product.invoke
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
-    events:
-      - httpApi:
-          path: products
-          method: get
-          cors: true
+#    events:
+#      - httpApi:
+#          path: products
+#          method: get
+#          cors: true
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
