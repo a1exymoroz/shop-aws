@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/a1exymoroz/shop-aws#readme",
   "dependencies": {
+    "aws-sdk": "^2.1171.0",
     "pg": "^8.7.3",
     "serverless": "^3.19.0",
     "serverless-finch": "^4.0.0"
