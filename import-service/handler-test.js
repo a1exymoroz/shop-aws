@@ -2,14 +2,13 @@
 const AWS = require('aws-sdk');
 const BUCKET = 'rss-2022-uploaded';
 
-
 module.exports =
     {
-        thumbnailsList: async (event) => {
+        thumbnailsList: async () => {
 
             const s3 = new AWS.S3({region: 'eu-west-1'});
             let statusCode = 200;
-            let body = {};
+            let body;
             let thumbnails = [];
             const params = {
                 Bucket: BUCKET,
