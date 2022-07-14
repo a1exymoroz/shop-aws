@@ -22,7 +22,7 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
 
 # you can overwrite defaults here
   stage: dev
@@ -79,10 +79,23 @@ functions:
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
     events:
-      - httpApi:
+      - http:
           path: /import
           method: get
-
+          cors: true
+          request:
+            parameters:
+              querystrings:
+                name: true
+  importFileParser:
+    handler: handler.importFileParser
+    events:
+      - s3:
+          bucket: rss-2022-uploaded
+          event: 's3:ObjectCreated:*'
+          rules:
+            - prefix: uploaded/
+          existing: true
 #  imageUpload:
 #    handler: handler-test.imageUpload
 #    #    The following are a few example events you can configure
